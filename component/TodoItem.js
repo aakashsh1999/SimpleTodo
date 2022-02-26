@@ -1,7 +1,9 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-export default function TodoItem({ deleteTask, text, index }) {
+
+
+export default function TodoItem({ deleteTask, text }) {
     return (
         <View style={styles.item} >
             <View style={styles.itemLeft}>

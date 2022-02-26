@@ -1,12 +1,16 @@
 import { StyleSheet, Text, View, StatusBar, Button, Alert, Modal, TextInput, ScrollView, SafeAreaView, Platform, TouchableOpacity } from 'react-native';
 import TodoItem from './component/TodoItem';
 import { useEffect, useState } from 'react';
+
 const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBar.currentHeight;
+
 export default function Todo() {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
 
+
+  //Adding the Task 
   const handleAddTask = () => {
     if (!task) {
       Alert.alert('Enter the task first.')
@@ -18,6 +22,7 @@ export default function Todo() {
     }
   }
 
+  //Deleting the Task
   const deleteTask = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
@@ -30,7 +35,7 @@ export default function Todo() {
     <View style={{ flex: 1, backgroundColor: 'white' }}>
       <StatusBar style={['auto', styles.barStyle]} animated={true} />
       <View>
-        <Text style={styles.Header}>Todo</Text>
+        <Text style={styles.Header}>Simple Todo</Text>
       </View>
 
       <ScrollView
@@ -46,9 +51,9 @@ export default function Todo() {
               taskItems.length !== 0 ?
                 taskItems.map((item, index) => {
                   return (
-                      <TodoItem text={item} key={index} deleteTask={deleteTask} />
+                    <TodoItem text={item} key={index} deleteTask={deleteTask} />
                   )
-                }) : (<View style={styles.noTaskStyle}><Text style={{ color: 'black', fontSize:18 }}>NO Tasks Available</Text></View>)
+                }) : (<View style={styles.noTaskStyle}><Text style={{ color: 'black', fontSize: 18 }}>No Tasks Available...</Text></View>)
             }
           </View>
         </View>
@@ -70,7 +75,7 @@ export default function Todo() {
           <Text style={styles.addButton} onPress={handleAddTask} >Add Task</Text>
         </View>
       </Modal>
-
+      {/* Button to add a Task */}
       <TouchableOpacity onPress={() => setModalVisible(true)}>
         <View style={styles.addWrapper}>
           <Text style={styles.addText}>+</Text>
@@ -83,18 +88,18 @@ export default function Todo() {
 const styles = StyleSheet.create({
   noTaskStyle: {
     flex: 1, justifyContent: 'center', alignSelf: 'center',
-    marginTop:250,
-    backgroundColor:'white'
+    marginTop: 250,
+    backgroundColor: 'white'
   },
-  addButton:{
-    backgroundColor:'#00B4D8',
-    color:'white',
-    fontWeight:'bold',
-    textAlign:'center',
-    padding:10,
-    borderRadius:20,
-    marginTop:16
-    
+  addButton: {
+    backgroundColor: '#00B4D8',
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    padding: 10,
+    borderRadius: 20,
+    marginTop: 16
+
   },
   Header: {
     width: '100%',
