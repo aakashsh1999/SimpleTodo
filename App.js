@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBar.currentHeight;
 
 export default function Todo() {
-  const [task, setTask] = useState();
+
+  const [task, setTask] = useState(null);
   const [taskItems, setTaskItems] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
 
